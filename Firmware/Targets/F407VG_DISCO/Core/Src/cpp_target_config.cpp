@@ -81,3 +81,8 @@ const PWMConfig MotorPWM::timerConfig =
 	.timerFreq = 168000000
 };
 #endif
+
+extern "C" void targetInit() {
+    // Ativa os pinos EN_L (PD14) e EN_R (PD15) da ponte H BTS7960
+    HAL_GPIO_WritePin(GPIOD, GPIO_PIN_14 | GPIO_PIN_15, GPIO_PIN_SET);
+}

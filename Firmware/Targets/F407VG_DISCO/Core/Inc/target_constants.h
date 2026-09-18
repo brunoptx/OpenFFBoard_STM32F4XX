@@ -13,7 +13,7 @@
  */
 
 // Hardware name string
-#define HW_TYPE "F407VG_DISCO"
+#define HW_TYPE "F407ZG_BLACK"
 #define HW_TYPE_INT 3 // Discovery board
 #define FW_DEVID 0x413 // F407
 
@@ -59,7 +59,7 @@
 //----------------------
 
 
-#define TIM_ENC htim2
+#define TIM_ENC htim3
 // Timer 2 is used by the encoder.
 #define TIM_PWM htim1
 
