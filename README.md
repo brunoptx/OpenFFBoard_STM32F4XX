@@ -17,6 +17,37 @@
 	</div>
 </div>
 
+***
+# OpenFFBoard - STM32F407ZG (Black Board) + BTS7960
+
+This fork adapts the OpenFFBoard firmware for the generic **STM32F407ZG Black Board V3.0**, specifically configured to replace the original controller of a **Logitech Driving Force Pro** using a **BTS7960** H-Bridge motor driver.
+
+## Hardware Mappings & Pinout
+
+Due to physical hardware differences between the STM32F4 Discovery (default target) and the F407ZG Black Board, the peripherals have been remapped via STM32CubeMX.
+
+### 1. Steering Wheel Encoder
+Moved from TIM2 to **TIM3** to avoid conflicts with the physical `WK_UP` button and debounce capacitor present on PA0 on the Black Board.
+* **Encoder A**: `PC6` (TIM3_CH1)
+* **Encoder B**: `PC7` (TIM3_CH2)
+
+### 2. Motor Driver (BTS7960)
+* **L_PWM**: `PE9` (TIM1_CH1)
+* **R_PWM**: `PE11` (TIM1_CH2)
+* **L_EN / R_EN (Enable)**: `PD14` / `PD15` (Mapped as GPIO Output to enable the H-bridge).
+
+### 3. Status LEDs
+Remapped from the Discovery board layout to the onboard LEDs of the Black Board.
+* **LED 1**: `PF9`
+* **LED 2**: `PF10`
+*(Note: The LEDs on this board are active-low, so they might behave inversely compared to the Discovery board).*
+
+### 4. Emergency Stop (E-Stop)
+* **E-Stop Pin**: `PD5` 
+*(Important: This pin must be connected to **GND** if you are not using a physical Emergency Stop button, otherwise the firmware will block motor initialization and trigger the Error LED).*
+
+
+***
 
 
 # Open FFBoard
